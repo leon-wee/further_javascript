@@ -22,7 +22,12 @@ describe('GitUserSearchController', function() {
         .respond(
           { items: items }
         );
-    }))
+    }));
+
+    afterEach(function() {
+      httpBackend.verifyNoOutstandingExpectation();
+      httpBackend.verifyNoOutstandingRequest();
+    });
 
 
     var items = [
