@@ -16,6 +16,7 @@
         <button class="btn" ng-click="searchCtrl.doSearch()">Search</button>
       </form>
 
+      <p class="searched_for" ng-show="searchCtrl.searchTerm">Search results for {{ searchCtrl.searchTerm }}</p>
       <ul class="list-group">
         <li ng-repeat="user in searchCtrl.searchResult.items">
           <img ng-src="{{user.avatar_url}}&s=50">
