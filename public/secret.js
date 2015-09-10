@@ -1,1 +1,0 @@
-var accessToken = 'd17483c33015d55b1a73f97365a1b140167124c6'
