@@ -77,6 +77,13 @@ describe('GitUserSearchController', function() {
       expect(ctrl.allUsers[0]).toEqual(gitHubFakeUserData);
     });
 
+    it('displays public repos', function() {
+      ctrl.searchTerm = 'tansaku';
+      ctrl.doSearch();
+      scope.$apply();
+      expect(ctrl.allUsers[0][0].public_repos).toEqual(238);
+    });
+
   });
 
 });
