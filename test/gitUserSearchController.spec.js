@@ -74,6 +74,7 @@ describe('GitUserSearchController', function() {
       ctrl.searchTerm = 'tansaku';
       ctrl.doSearch();
       scope.$apply();
+      expect(ctrl.searchResult.items).toEqual(gitHubSearchResponse.items)
       expect(ctrl.allUsers[0]).toEqual(gitHubFakeUserData);
     });
 
