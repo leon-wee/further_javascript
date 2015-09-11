@@ -9,7 +9,7 @@ githubUserSearch.factory('Search', ['$http', function($http) {
         method: 'GET',
         params: {
           'q': searchTerm,
-          'accessToken': accessToken
+          'access_token': accessToken
         }
       });
     }

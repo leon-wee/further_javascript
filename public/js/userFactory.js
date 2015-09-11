@@ -4,7 +4,10 @@ githubUserSearch.factory('Users', ['$http', function($http) {
     repoQuery: function(queryURL) {
       return $http({
         url: queryURL,
-        method: 'GET'
+        method: 'GET',
+        params: {
+          'access_token': accessToken
+        }
       });
     }
   }

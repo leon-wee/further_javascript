@@ -6,6 +6,7 @@ githubUserSearch.controller('GitUserSearchController', ['Search', 'Users', funct
     if (self.searchTerm) {
       Search.query(self.searchTerm)
         .then(function(response) {
+          console.log(response.data.items[0].url)
           self.searchResult = response.data;
           var responseArray = [];
           for(var i = 0; i < self.searchResult.items.length; i++) {
