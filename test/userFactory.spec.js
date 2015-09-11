@@ -29,4 +29,11 @@ describe('factory:Users', function() {
     expect(users.repoQuery).toBeDefined();
   });
 
+  it('returns search results', function() {
+    users.repoQuery('hello')
+      .then(function(response) {
+        expect(respond.data).toEqual(items)
+      })
+  });
+
 });
