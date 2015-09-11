@@ -14,9 +14,9 @@ describe('Github Profile finder', function() {
   it('finds profiles', function() {
     searchBox.sendKeys('spike01');
     searchButton.click();
-    var profiles = element.all(by.repeater('user in searchCtrl.searchResult.items'));
+    var profiles = element.all(by.repeater('user in searchCtrl.allUsers'));
     expect(element(by.className('searched_for')).getText()).toEqual('Search results for spike01');
-    expect(profiles.getText()).toEqual(['spike01'])
+    expect(profiles.getText()).toEqual(['spike01 100'])
   });
 
 
