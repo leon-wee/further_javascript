@@ -4,12 +4,22 @@ describe('GitUserSearchController', function() {
   var ctrl;
   var fakeSearch;
   var q, scope;
+  var fakeUserSearch;
 
   beforeEach(function() {
     module(function($provide) {
       fakeSearch = jasmine.createSpyObj('fakeSearch', ['query']);
       $provide.factory('Search', function() {
         return fakeSearch;
+      })
+    });
+  });
+
+  beforeEach(function() {
+    module(function($provide) {
+      fakeUserSearch = jasmine.createSpyObj('fakeUserSearch', ['repoQuery']);
+      $provide.factory('Users', function() {
+        return fakeUserSearch;
       })
     });
   });
@@ -43,15 +53,28 @@ describe('GitUserSearchController', function() {
       ]
     }
 
+    var gitHubFakeUserData = [
+      {
+        login: "tansaku",
+        avatar_url: "https://avatars.githubusercontent.com/u/30216?v=3",
+        url: "https://api.github.com/users/tansaku",
+        html_url: "https://github.com/tansaku",
+        public_repos: 238,
+        followers: 197,
+      }
+    ]
+
+
     beforeEach(function() {
       fakeSearch.query.and.returnValue(q.when({ data: gitHubSearchResponse }));
+      fakeUserSearch.repoQuery.and.returnValue(q.when({ data: gitHubFakeUserData }))
     });
 
     it('displays search results', function() {
       ctrl.searchTerm = 'tansaku';
       ctrl.doSearch();
       scope.$apply();
-      expect(ctrl.searchResult.items).toEqual(gitHubSearchResponse.items);
+      expect(ctrl.allUsers[0]).toEqual(gitHubFakeUserData);
     });
 
   });

@@ -25,8 +25,8 @@ describe('factory:Users', function() {
     }
   ];
 
-  it('responds to', function() {
-    expect(users.reQuery).toBeDefined();
+  it('responds to repoQuery', function() {
+    expect(users.repoQuery).toBeDefined();
   });
 
 });
