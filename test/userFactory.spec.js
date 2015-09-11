@@ -8,32 +8,36 @@ describe('factory:Users', function() {
   }));
 
   var httpBackend;
+
   beforeEach(inject(function($httpBackend) {
     httpBackend = $httpBackend
     httpBackend
-      .whenGET("https://api.github.com/search/users?q=hello")
+      .whenGET("http://api.github.com/users/tansaku?access_token=" + accessToken )
       .respond(
         { items: items }
       );
   }));
 
   var items = [
-    {
-      "login": "tansaku",
-      "avatar_url": "https://avatars.githubusercontent.com/u/30216?v=3",
-      "html_url": "https://github.com/tansaku"
-    }
-  ];
+      {
+        "login": "tansaku",
+        "avatar_url": "https://avatars.githubusercontent.com/u/30216?v=3",
+        "html_url": "https://github.com/tansaku",
+        "followers": "197",
+        "public_repos": "238"
+      },
+    ];
 
   it('responds to repoQuery', function() {
     expect(users.repoQuery).toBeDefined();
   });
 
   it('returns search results', function() {
-    users.repoQuery('hello')
+    users.repoQuery('http://api.github.com/users/tansaku')
       .then(function(response) {
-        expect(respond.data).toEqual(items)
+        expect(response.data.items).toEqual(items)
       })
+    httpBackend.flush();
   });
-
+//
 });

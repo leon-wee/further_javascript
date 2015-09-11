@@ -20,7 +20,8 @@ module.exports = function(config) {
       'public/bower_components/angular-resource/angular-resource.js',
       'public/bower_components/angular-mocks/angular-mocks.js',
       'public/js/**/*.js',
-      'test/**/*.spec.js'
+      'test/**/*.spec.js',
+      'test/userFactory.spec.js'
     ],
 
 

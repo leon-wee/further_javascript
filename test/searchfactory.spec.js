@@ -11,7 +11,7 @@ describe('factory: Search', function() {
   beforeEach(inject(function($httpBackend) {
     httpBackend = $httpBackend
     httpBackend
-      .when("GET", "https://api.github.com/search/users?q=hello")
+      .whenGET("https://api.github.com/search/users?access_token=" + accessToken + "&q=tansaku")
       .respond(
         { items: items }
       );
@@ -35,10 +35,11 @@ describe('factory: Search', function() {
   });
 
   it('returns search results', function() {
-    search.query('hello')
+    search.query('tansaku')
       .then(function(response) {
-        expect(respond.data).toEqual(items)
+        expect(response.data.items).toEqual(items)
       })
+    httpBackend.flush();
   });
 
 });

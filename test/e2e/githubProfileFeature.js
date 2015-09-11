@@ -19,5 +19,15 @@ describe('Github Profile finder', function() {
     expect(profiles.getText()).toEqual(['spike01 100'])
   });
 
+  it('can count the number of leon-wee', function() {
+    searchBox.sendKeys('leon-wee');
+    searchButton.click();
+    var profile = element.all(by.repeater('user in searchCtrl.allUsers'));
+    expect(element(by.className('searched_for')).getText()).toEqual('Search results for leon-wee')
+    profile.then(function(items) {
+      expect(items.length).toEqual(1)
+    });
+  });
+
 
 });
